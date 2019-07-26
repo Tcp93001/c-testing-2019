@@ -1,36 +1,33 @@
 <template>
   <v-app>
-    <v-app-bar app>
+    <v-app-bar dark app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span>Cantón </span>
+        <span class="font-weight-light">Testing Example</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <DataTemplate />
     </v-content>
+    <v-footer absolute>
+      <v-spacer></v-spacer>
+      <div>Todos los derechos registrados &copy; {{ new Date().getFullYear() }}</div>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import DataTemplate from './components/data-template/DataTemplate.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    DataTemplate
   },
   data: () => ({
     //
-  }),
-};
+  })
+}
 </script>
