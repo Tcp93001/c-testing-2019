@@ -14,6 +14,21 @@ export default new Router({
       component: DataTemplate
     },
     {
+      path: '/clientes',
+      name: 'clients',
+      component: DataTemplate
+    },
+    {
+      path: '/usuarios/:eq_id',
+      name: 'users',
+      component: DataTemplate
+    },
+    {
+      path: '/getClientes/:eq_id/:user_id',
+      name: 'home',
+      component: DataTemplate
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

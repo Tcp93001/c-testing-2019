@@ -1,52 +1,110 @@
-import { mapGetters, mapActions } from 'vuex'
 const fb = require('../../firebaseConfig.js')
 
 export default {
   name: 'DataTemplate',
   data () {
     return {
-      data: null,
       userCollection: [],
-      firstSelect: null,
-      secondSelect: null
+      equipmentCollection: [],
+      clientCollection: [],
+      userData: [
+        {
+          equipment: null,
+          user: null,
+          email: null,
+          user_id: null
+        }
+      ],
+      headers: [
+        { text: 'Equipo', align: 'center', value: 'equipment' },
+        { text: 'Usuario', value: 'user' },
+        { text: 'Correo', value: 'email' },
+        { text: 'Número de usuario', value: 'user_id' }
+      ]
     }
   },
   computed: {
-    ...mapGetters([
-      'getUsersCollection',
-      'getClientsCollection',
-      'getEquipmentCollection'
-    ]),
-    firstSelectValue () {
-      this.firstSelect = value
-      return this.firstSelect
+    userSelection () {
+      return this.userCollection
     },
-    secondSelectValue () {
-      if (this.firstSelect) {
-        console.log('exito')
+    setEquipmentSelect: {
+      get () {
+        return this.equipmentCollection
+      },
+      set (value) {
+        this.userData = [{
+          equipment: null,
+          user: null,
+          email: null,
+          user_id: null
+        }]
+        this.userData[0].equipment = value
+        this.retrieveUserCollection(value)
+      }
+    },
+    setUserSelect: {
+      get () {
+        return this.userCollection
+      },
+      set (value) {
+        const data = this.userCollection.filter(elem => {
+          return elem.value === value
+        })
+        this.userData[0].user = data[0].text
+        this.retrieveClientCollection(value)
       }
     }
   },
   created () {
-    this.retrieveUserCollection()
+    this.retrieveEquipmentCollection()
   },
   methods: {
-    ...mapActions([
-      'accessUsersCollection'
-    ]),
-    async retrieveUserCollection () {
+    async retrieveEquipmentCollection () {
       let results = []
-      await fb.usersCollection.get().then(function (querySnapshot) {
-        querySnapshot.forEach(function(response) {
-            // doc.data() is never undefined for query doc snapshots
-            results.push(response.data());
+      await fb.equipmentCollection.get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (response) {
+          results.push(response.data())
         })
       })
       const data = results.map(elem => {
-        return elem.eq_id
+        return {
+          text: elem.eq_id,
+          value: elem.eq_id
+        }
+      })
+      this.equipmentCollection = data
+    },
+
+    async retrieveUserCollection (element) {
+      let results = []
+      await fb.usersCollection.where("eq_id", "==", element)
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (response) {
+            results.push(response.data())
+          })
+        })
+      const data = results.map(elem => {
+        return {
+          text: elem.name,
+          value: elem.user_id
+        }
       })
       this.userCollection = data
-      console.log(this.userCollection)
+    },
+
+    async retrieveClientCollection (element) {
+      let results = []
+      await fb.clientsCollection.where("user_id", "==", element)
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (response) {
+            results.push(response.data())
+          })
+        })
+      this.userData[0].email = results[0].email
+      this.userData[0].user_id = results[0].user_id
+      this.clientCollection = results
     }
   }
 }
