@@ -9,23 +9,23 @@
         </v-layout>
         <v-layout row class="justify-space-around">
           <v-flex xs5 sm5 py-4>
-            <v-select
-              :items="equipmentCollection"
-              :item-text="equipmentCollection.text"
-              :item-value="equipmentCollection.value"
-              label="Equipo"
-              v-model="setEquipmentSelect"
-            ></v-select>
+              <v-select
+                :items="equipmentCollection"
+                :item-text="equipmentCollection.text"
+                :item-value="equipmentCollection.value"
+                label="Equipo"
+                v-model="setEquipmentSelect"
+              ></v-select>
           </v-flex>
 
           <v-flex xs5 sm5 py-4>
-            <v-select
-              :items="userSelection"
-              :item-text="userSelection.text"
-              :item-value="userSelection.value"
-              label="Usuario"
-              v-model='setUserSelect'
-            ></v-select>
+              <v-select
+                :items="userSelection"
+                :item-text="userSelection.text"
+                :item-value="userSelection.value"
+                label="Usuario"
+                v-model='setUserSelect'
+              ></v-select>
           </v-flex>
         </v-layout>
         <v-layout row class="justify-center">

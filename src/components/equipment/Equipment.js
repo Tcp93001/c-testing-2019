@@ -1,7 +1,7 @@
 const fb = require('../../firebaseConfig.js')
 
 export default {
-  name: 'DataTemplate',
+  name: 'Equipment',
   data () {
     return {
       userCollection: [],

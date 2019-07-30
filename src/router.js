@@ -25,7 +25,7 @@ export default new Router({
     },
     {
       path: '/getClientes/:eq_id/:user_id',
-      name: 'home',
+      name: 'getClients',
       component: DataTemplate
     },
     {
