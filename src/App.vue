@@ -9,7 +9,7 @@
     </v-app-bar>
 
     <v-content>
-      <DataTemplate />
+      <router-view></router-view>
     </v-content>
     <v-footer absolute>
       <v-spacer></v-spacer>

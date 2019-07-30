@@ -45,4 +45,4 @@
   </div>
 </template>
 
-<script src='./DataTemplate.js' />
+<script src='./Clients.js' />

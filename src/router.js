@@ -1,35 +1,35 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import DataTemplate from './components/data-template/DataTemplate'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
+  linkExactActiveClass: 'active',
   routes: [
     {
       path: '/',
       name: 'home',
-      component: DataTemplate
+      component: () => import(/* webpackChunkName: "DataTemplate" */ './components/data-template/DataTemplate.vue')
     },
     {
       path: '/clientes',
       name: 'clients',
-      component: DataTemplate
+      component: () => import(/* webpackChunkName: "DataTemplate" */ './components/data-template/DataTemplate.vue')
     },
     {
       path: '/usuarios/:eq_id',
       name: 'users',
-      component: DataTemplate
+      component: () => import(/* webpackChunkName: "users" */ './components/equipment/Equipment.vue')
     },
     {
       path: '/getClientes/:eq_id/:user_id',
       name: 'getClients',
-      component: DataTemplate
+      component: () => import(/* webpackChunkName: "getClients" */ './components/clients/Clients.vue')
     },
     {
-      path: '/about',
+      path: '*',
       name: 'about',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
