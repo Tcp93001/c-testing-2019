@@ -5,8 +5,6 @@ export default {
   data () {
     return {
       userCollection: [],
-      equipmentCollection: [],
-      clientCollection: [],
       pathEquipmentData: ''
     }
   },

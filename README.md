@@ -15,4 +15,4 @@ npm run dev
 npm run build
 ```
 
-This project uses a temporal Firebase implementation.
+This project uses a temporal Firebase implementation, valid until Aug 10, 2019.
